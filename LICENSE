@@ -1,21 +1,22 @@
-MIT License
+Non‑Commercial License
 
-Copyright (c) 2025 bastasie
+The source code in this repository is provided under the Creative Commons Attribution‑NonCommercial‑ShareAlike 4.0 International (CC BY‑NC‑SA 4.0) License. This means you are free to share (copy and redistribute the material in any medium or format) and adapt (remix, transform, and build upon the material) for non‑commercial purposes, as long as you:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Give appropriate credit, provide a link to the license and indicate if changes were made.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Distribute your contributions under the same license (share‑alike).
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Do not use the material for commercial purposes. Any commercial use—including use in products or services for which payment is received—requires separate written permission from the authors.
+
+
+Copyright Notice
+
+Copyright © 2025 BAZ Research Group
+
+This work is licensed under the Creative Commons Attribution‑NonCommercial‑ShareAlike 4.0 International License.
+To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/.
+
+Disclaimer
+
+This project is an experimental demonstration. It is not a complete implementation of the BAZ EM analog computing chain and does not expose or control any proprietary 5G sidelink features. The authors make no warranties regarding the accuracy, safety or fitness of this software for any particular purpose. Use it at your own risk and only in compliance with the license terms.
+
