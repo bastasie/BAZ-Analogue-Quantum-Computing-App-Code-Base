@@ -30,7 +30,7 @@ Receive and parse the weights on the client side.
 
 In a production system you would extend the weight computation to match the requirements of the BAZ EM ladder and interface with vendor‑specific RF APIs to apply the weights to the hardware. The Wi‑Fi Direct communication layer, however, would remain largely the same.
 
-Building the Example
+## Building the Example
 
 1. Clone this repository to your local machine.
 
@@ -43,7 +43,7 @@ Building the Example
 
 4. Build and run the app on at least two Android devices that support Wi‑Fi Direct. On each device, open the app and tap Discover. After peers appear, select a device on one of the phones to form a group. The group owner will compute and send the weights to the client.
 
-Benchmarking
+## Benchmarking
 
 This section records the latest end-to-end run of the BAZ prime-encoded proofing system on a large mathematics knowledge base. It includes the full report.json, plus structure and representative slices of math_kb.json, along with a field-by-field interpretation.
 
@@ -244,7 +244,7 @@ Explanations are emitted for all answers (100% coverage), so every result is tra
 
 
 
-Non‑Commercial License
+## Non‑Commercial License
 
 The source code in this repository is provided under the Creative Commons Attribution‑NonCommercial‑ShareAlike 4.0 International (CC BY‑NC‑SA 4.0) License. This means you are free to share (copy and redistribute the material in any medium or format) and adapt (remix, transform, and build upon the material) for non‑commercial purposes, as long as you:
 
