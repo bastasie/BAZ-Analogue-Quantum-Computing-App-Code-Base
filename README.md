@@ -43,6 +43,205 @@ Building the Example
 
 4. Build and run the app on at least two Android devices that support Wi‑Fi Direct. On each device, open the app and tap Discover. After peers appear, select a device on one of the phones to form a group. The group owner will compute and send the weights to the client.
 
+Benchmarking
+
+This section records the latest end-to-end run of the BAZ prime-encoded proofing system on a large mathematics knowledge base. It includes the full report.json, plus structure and representative slices of math_kb.json, along with a field-by-field interpretation.
+
+
+---
+
+Artifacts
+
+report.json — benchmark output (see full content below)
+
+math_kb.json — large math KB (~12 MB): 190,537 facts, 31 rules (structure + samples below)
+
+
+
+---
+
+report.json (full content)
+
+{
+  "count": 1695,
+  "accuracy": 1.0,
+  "qps": 636838.5754972228,
+  "latency_ms": {
+    "p50": 0.0005979999286864768,
+    "p95": 0.0011627999811025802,
+    "min": 0.00040200006878876593,
+    "max": 0.020202999962748436
+  },
+  "equation_coverage": 0.024188790560471976,
+  "explanation_coverage": 1.0,
+  "depth_hist": {
+    "0": 22,
+    "1": 19
+  },
+  "facts": 190537,
+  "rules": 31
+}
+
+Interpretation
+
+count — number of queries evaluated: 1695
+(Sampler draws ~⅓ direct facts, ~⅓ universal implications, ~⅓ capabilities. Given far more direct facts than rules, the effective sample capped at 1695 in this run.)
+
+accuracy — share correct: 1.0 (100%)
+
+qps — throughput: ~636,839 queries/second
+
+latency_ms — per-query latency (ms):
+
+p50: 0.000598
+
+p95: 0.001163
+
+min: 0.000402
+
+max: 0.020203
+
+
+equation_coverage — fraction of answers with a formal equation chain: ~2.42%
+(Most sampled queries were arithmetic/divisibility facts; equation chains appear mainly for membership/capability.)
+
+explanation_coverage — fraction with plain-English explanations: 100%
+
+depth_hist — proof depth histogram (subset/implication steps):
+
+0: 22 direct-fact proofs
+
+1: 19 one-step implications
+
+
+facts — ground facts in KB: 190,537
+
+rules — total rules: 31
+
+
+
+---
+
+math_kb.json (structure + samples)
+
+Shape
+
+{
+  "facts": [ ... 190537 items ... ],
+  "rules": [ ... 31 items ... ]
+}
+
+Counts (by type)
+
+Facts: 190,537
+
+Classification: even/odd/prime/composite (for 0..599)
+
+Divisibility: a divisible_by d (within range)
+
+Arithmetic: a plus_b c, a times_b c (where results remain 0..599)
+
+
+Rules: 31
+
+Universal: 19 (category inclusions A ⊆ B)
+
+Capability: 10 (e.g., “all fields can field_division”)
+
+Standard: 2 (small conditional templates)
+
+
+
+Sample: first 15 facts
+
+[
+  { "subject": "0", "predicate": "is", "object": "even_numbers" },
+  { "subject": "1", "predicate": "is", "object": "odd_numbers" },
+  { "subject": "2", "predicate": "is", "object": "even_numbers" },
+  { "subject": "2", "predicate": "is", "object": "prime_numbers" },
+  { "subject": "2", "predicate": "divisible_by", "object": "1" },
+  { "subject": "2", "predicate": "divisible_by", "object": "2" },
+  { "subject": "3", "predicate": "is", "object": "odd_numbers" },
+  { "subject": "3", "predicate": "is", "object": "prime_numbers" },
+  { "subject": "3", "predicate": "divisible_by", "object": "1" },
+  { "subject": "3", "predicate": "divisible_by", "object": "3" },
+  { "subject": "4", "predicate": "is", "object": "even_numbers" },
+  { "subject": "4", "predicate": "is", "object": "composite_numbers" },
+  { "subject": "4", "predicate": "divisible_by", "object": "1" },
+  { "subject": "4", "predicate": "divisible_by", "object": "2" },
+  { "subject": "4", "predicate": "divisible_by", "object": "4" }
+]
+
+Sample: first 15 rules (mixture)
+
+[
+  { "type": "universal", "category": "prime_numbers", "property": "natural_numbers" },
+  { "type": "universal", "category": "composite_numbers", "property": "natural_numbers" },
+  { "type": "universal", "category": "even_numbers", "property": "integers" },
+  { "type": "universal", "category": "odd_numbers", "property": "integers" },
+  { "type": "universal", "category": "natural_numbers", "property": "integers" },
+  { "type": "universal", "category": "integers", "property": "rationals" },
+  { "type": "universal", "category": "rationals", "property": "reals" },
+  { "type": "universal", "category": "reals", "property": "complex_numbers" },
+  { "type": "universal", "category": "semigroups", "property": "magmas" },
+  { "type": "universal", "category": "monoids", "property": "semigroups" },
+  { "type": "universal", "category": "groups", "property": "monoids" },
+  { "type": "universal", "category": "abelian_groups", "property": "groups" },
+  { "type": "universal", "category": "rings", "property": "abelian_groups" },
+  { "type": "universal", "category": "fields", "property": "rings" },
+  { "type": "universal", "category": "metric_spaces", "property": "topological_spaces" }
+]
+
+Capability rules (all 10)
+
+[
+  { "type": "capability", "category": "natural_numbers", "capability": "addition" },
+  { "type": "capability", "category": "natural_numbers", "capability": "multiplication" },
+  { "type": "capability", "category": "integers", "capability": "subtraction" },
+  { "type": "capability", "category": "rationals", "capability": "division" },
+  { "type": "capability", "category": "fields", "capability": "field_division" },
+  { "type": "capability", "category": "vector_spaces", "capability": "vector_addition" },
+  { "type": "capability", "category": "vector_spaces", "capability": "scalar_multiplication" },
+  { "type": "capability", "category": "Hilbert_spaces", "capability": "inner_products" },
+  { "type": "capability", "category": "rings", "capability": "ring_multiplication" },
+  { "type": "capability", "category": "abelian_groups", "capability": "commutative_addition" }
+]
+
+Standard rules (2)
+
+[
+  {
+    "type": "standard",
+    "conditions": [
+      { "subject": "x", "predicate": "is", "object": "prime_numbers" },
+      { "subject": "y", "predicate": "is", "object": "prime_numbers" }
+    ],
+    "conclusion": { "subject": "x*y", "predicate": "is", "object": "composite_numbers" }
+  },
+  {
+    "type": "standard",
+    "conditions": [
+      { "subject": "n", "predicate": "is", "object": "even_numbers" }
+    ],
+    "conclusion": { "subject": "n", "predicate": "divisible_by", "object": "2" }
+  }
+]
+
+
+---
+
+Notes
+
+The low equation_coverage (~2.42%) here reflects the sampler’s heavy weighting toward arithmetic/divisibility facts; equation chains are generated primarily for membership and capability queries. You can:
+
+Bias the sampler toward membership/capability queries to raise equation coverage, and/or
+
+Enable equation-form rendering for arithmetic facts (e.g., emit a + b = c and a × b = c in formal notation).
+
+
+Explanations are emitted for all answers (100% coverage), so every result is traceable in prose.
+
+
 
 
 Non‑Commercial License
